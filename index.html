@@ -24,9 +24,9 @@
             "password": "Se242PI&10"
         });
         const jsonIn2 = await axios.post('https://dev-leos-id.hmm.tools/permitToken', null, {
-            headers: { Authorization: `Bearer ${JSON.parse(jsonIn)["access_token"]}` }
+            headers: { Authorization: `Bearer ${JSON.parse(jsonIn.data)["access_token"]}` }
         });
-        new QRCode(document.getElementById("qrcode"), JSON.parse(jsonIn2)["permit_token"]);
+        new QRCode(document.getElementById("qrcode"), JSON.parse(jsonIn2.data)["permit_token"]);
     }
 </script>
 
