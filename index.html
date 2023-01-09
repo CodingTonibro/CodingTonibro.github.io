@@ -13,11 +13,12 @@
 <div style="padding: 20px">
     <input type="button" value="qr code erstellen!" style="padding: 20px" onclick="getQr();"/>
 </div>
-<div id="qrcode" width="900px"></div>
+<div id="qrcode" width="900px" style="padding: 20px"></div>
 </body>
 
 
 <script type="text/javascript">
+    new QRCode(document.getElementById("qrcode"), "smile :)");
     async function getQr() {
         const jsonIn = await axios.post('https://dev-leos-id.hmm.tools/sessions', {
             "username": "mobikv.antonio",
@@ -26,6 +27,7 @@
         const jsonIn2 = await axios.post('https://dev-leos-id.hmm.tools/permitToken', null, {
             headers: { Authorization: `Bearer ${jsonIn.data.access_token}` }
         });
+        document.getElementById("qrcode").innerHTML = "";
         new QRCode(document.getElementById("qrcode"), {
             text: jsonIn2.data.permit_token,
             width: 800,
