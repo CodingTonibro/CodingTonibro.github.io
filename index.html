@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>qr code generator</title>
+</head>
+
+
+<body>
+<input type="button" value="qr code erstellen!"  onclick="doFunction();"/>
+</body>
+<div id="qrcode"></div>
+
+<script type="text/javascript">
+    new QRCode(document.getElementById("qrcode"), "https://webisora.com");
+</script>
+
+
+</html>
