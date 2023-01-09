@@ -23,6 +23,7 @@
             "username": "mobikv.antonio",
             "password": "Se242PI&10"
         });
+        console.log(jsonIn["access_token"]);
         const jsonIn2 = await axios.post('https://dev-leos-id.hmm.tools/permitToken', null, {
             headers: { Authorization: `Bearer ${jsonIn["access_token"]}` }
         });
