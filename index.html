@@ -10,17 +10,21 @@
 
 
 <body>
-<input type="button" value="qr code erstellen!"  onclick="doFunction();"/>
+<input type="button" value="qr code erstellen!" style="padding: 20px" onclick="doFunction();"/>
 </body>
 <div id="qrcode"></div>
 
 <script type="text/javascript">
-    new QRCode(document.getElementById("qrcode"), "https://webisora.com");
-    const jsonIn = axios.post('https://dev-leos-id.hmm.tools/sessions', {
-        "username": "mobikv.antonio",
-        "password": "Se242PI&10"
-    });
-    console.log(jsonIn);
+    async function getQr() {
+        const jsonIn = await axios.post('https://dev-leos-id.hmm.tools/sessions', {
+            "username": "mobikv.antonio",
+            "password": "Se242PI&10"
+        });
+        const jsonIn2 = await axios.post('https://dev-leos-id.hmm.tools/permitToken', null, {
+            headers: { Authorization: `Bearer ${jsonIn["access_token"]}` }
+        });
+        new QRCode(document.getElementById("qrcode"), jsonIn2["permit_token"]);
+    }
 </script>
 
 
