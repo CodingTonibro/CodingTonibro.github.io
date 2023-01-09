@@ -13,9 +13,9 @@
 <div style="padding: 20px">
     <input type="button" value="qr code erstellen!" style="padding: 20px" onclick="getQr();"/>
 </div>
-
+<div id="qrcode" width="900px"></div>
 </body>
-<div id="qrcode"></div>
+
 
 <script type="text/javascript">
     async function getQr() {
@@ -24,9 +24,13 @@
             "password": "Se242PI&10"
         });
         const jsonIn2 = await axios.post('https://dev-leos-id.hmm.tools/permitToken', null, {
-            headers: { Authorization: `Bearer ${JSON.parse(jsonIn.data)["access_token"]}` }
+            headers: { Authorization: `Bearer ${jsonIn.data.access_token}` }
         });
-        new QRCode(document.getElementById("qrcode"), JSON.parse(jsonIn2.data)["permit_token"]);
+        new QRCode(document.getElementById("qrcode"), {
+            text: jsonIn2.data.permit_token,
+            width: 800,
+            height: 800,
+        });
     }
 </script>
 
