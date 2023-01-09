@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <title>qr code generator</title>
@@ -14,6 +16,11 @@
 
 <script type="text/javascript">
     new QRCode(document.getElementById("qrcode"), "https://webisora.com");
+    const jsonIn = axios.post('https://dev-leos-id.hmm.tools/sessions', {
+        "username": "mobikv.antonio",
+        "password": "Se242PI&10"
+    });
+    console.log(jsonIn);
 </script>
 
 
